@@ -13,9 +13,7 @@ function App() {
             </div>
 
             <div id="coeff-inputs">
-                <Input label="Coefficient a: " min="0"/> {/*practice use of proxy props*/}
-                <Input label="Coefficient b: "/>
-                <Input label="Coefficient c: "/>
+                <Input />
             </div>
 
             <div id="clear-button">
