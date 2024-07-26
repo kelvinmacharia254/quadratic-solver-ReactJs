@@ -1,9 +1,22 @@
 import Input from "./components/Input.jsx";
 import Results from "./components/Results.jsx";
 import "./index.css"
+import {useState} from "react";
 function App() {
-
-  return (
+    const [coefficients, setCoefficients] = useState(
+        {
+            coefficient_a: 1,
+            coefficient_b: 0,
+            coefficient_c: 0,
+        }
+    );
+    function handleChange(inputIdentity, coeffValue) {
+        setCoefficients((prevCoefficients) => {
+            return {...prevCoefficients, [inputIdentity]: coeffValue};  // surround 'inputIdentity' with [] to be evaluated as key not literal
+        })
+        console.log(coefficients);
+    };
+    return (
     <>
         <div className="container">
 
@@ -13,15 +26,17 @@ function App() {
             </div>
 
             <div id="coeff-inputs">
-                <Input />
+                <Input
+                    coefficients={coefficients}
+                    onChange={handleChange}/>
             </div>
 
             <div id="clear-button">
                 <button>Clear</button>
             </div>
 
-            <div className="result">
-                <Results/>
+            <div id="results">
+                <Results coefficients={coefficients} />
             </div>
 
 
