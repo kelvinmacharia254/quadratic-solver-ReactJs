@@ -58,4 +58,12 @@ body{
     border-radius: 0.5rem;
     padding: 0 3rem 3rem 3rem;
     background-color: rgba(248, 0, 0, 0.3);
+    font-weight: bold;
+}
+
+#invalid_coeff{
+    color: #ff0000;
+    font-weight: bold;
+    background: #ffffff;
+    padding: .5rem;
 }
