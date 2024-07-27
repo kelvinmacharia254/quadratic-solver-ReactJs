@@ -11,7 +11,8 @@ function App() {
         }
     );
 
-    let coefficient_aValid = coefficients.coefficient_a === 0 || coefficients.coefficient_a === ''
+    let coefficient_aValid = Number(coefficients.coefficient_a) === 0 || coefficients.coefficient_a === ''
+
     console.log("coefficient_aValid", coefficient_aValid)
     function handleChange(inputIdentity, coeffValue) {
         setCoefficients((prevCoefficients) => {
@@ -41,7 +42,6 @@ function App() {
                 {coefficient_aValid && <p id="invalid_coeff">Coefficient a is invalid. It can't be zero.</p>}
                 {!coefficient_aValid && <Results coefficients={coefficients}/>}
             </div>
-
 
         </div>
 
