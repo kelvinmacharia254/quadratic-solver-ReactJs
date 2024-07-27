@@ -11,14 +11,25 @@ function App() {
         }
     );
 
+    // determine whether coefficient_a is invalid
     let coefficient_aValid = Number(coefficients.coefficient_a) === 0 || coefficients.coefficient_a === ''
 
-    console.log("coefficient_aValid", coefficient_aValid)
     function handleChange(inputIdentity, coeffValue) {
+        // update state when any coeff is changed
         setCoefficients((prevCoefficients) => {
             return {...prevCoefficients, [inputIdentity]: coeffValue};  // surround 'inputIdentity' with [] to be evaluated as key not literal
         })
-    };
+    }
+
+    function reset(){
+        setCoefficients(
+            {
+            coefficient_a: "",
+            coefficient_b: "",
+            coefficient_c: "",
+        }
+        )
+    }
     return (
     <>
         <div className="container">
@@ -35,11 +46,11 @@ function App() {
             </div>
 
             <div id="clear-button">
-                <button>Clear</button>
+                <button onClick={reset}>Clear</button>
             </div>
 
             <div id="results">
-                {coefficient_aValid && <p id="invalid_coeff">Coefficient a is invalid. It can't be zero.</p>}
+                {coefficient_aValid && <p id="invalid_coeff">Coefficient can't be zero.</p>}
                 {!coefficient_aValid && <Results coefficients={coefficients}/>}
             </div>
 
