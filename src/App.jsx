@@ -40,6 +40,7 @@ function App() {
             </div>
 
             <div id="coeff-inputs">
+                {coefficient_aValid && <p id="invalid_coeff"><span id="warning">&#9888;</span> Coefficient 'a' can't be zero.</p>}
                 <Input
                     coefficients={coefficients}
                     onChange={handleChange}/>
@@ -50,8 +51,8 @@ function App() {
             </div>
 
             <div id="results">
-                {coefficient_aValid && <p id="invalid_coeff">Coefficient can't be zero.</p>}
                 {!coefficient_aValid && <Results coefficients={coefficients}/>}
+                {coefficient_aValid &&  <p>Results will display here for a valid quadratic expression</p>}
             </div>
 
         </div>

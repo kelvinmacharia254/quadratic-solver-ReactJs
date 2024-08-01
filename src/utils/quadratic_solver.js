@@ -10,8 +10,10 @@ export function quadratic_solver(coefficients) {
         let answer1 = (-coefficient_b+Math.sqrt(determinant))/(2*coefficient_a)
         let answer2 = (-coefficient_b-Math.sqrt(determinant))/(2*coefficient_a)
         return [answer1, answer2]
-    }else{
+    }else if (determinant < 0){
         return "Complex solution"
+    } else{
+        return []
     }
 
 
