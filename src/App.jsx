@@ -1,7 +1,8 @@
 import Input from "./components/Input.jsx";
 import Results from "./components/Results.jsx";
 import "./index.css"
-import {useState} from "react";
+import {useRef, useState} from "react";
+import Modal from "./components/Modal.jsx";
 function App() {
     const [coefficients, setCoefficients] = useState(
         {
@@ -10,6 +11,8 @@ function App() {
             coefficient_c: 0,
         }
     );
+
+    const dialogRef = useRef(null);
 
     // determine whether coefficient_a is invalid
     let coefficient_aValid = Number(coefficients.coefficient_a) === 0 || coefficients.coefficient_a === ''
@@ -21,19 +24,25 @@ function App() {
         })
     }
 
-    function reset(){
-        setCoefficients(
+    function reset(buttonIdentity){
+        if(buttonIdentity === "clear"){
+            console.log(`buttonIdentity: ${buttonIdentity}`);
+            dialogRef.current.showModal();
+        } else if(buttonIdentity === "confirm-clear"){
+            dialogRef.current.close();
+            console.log(`buttonIdentity: ${buttonIdentity}`);
+            setCoefficients(
             {
             coefficient_a: "",
             coefficient_b: "",
             coefficient_c: "",
+        })
         }
-        )
     }
     return (
     <>
         <div className="container">
-
+            <Modal ref={dialogRef} onClickModalButton={reset}/>
             <div id="header">
                 <h1>Quadratic Solver</h1>
                 <h4>&ldquo;Algebra is so cool&ldquo;</h4>
@@ -47,7 +56,7 @@ function App() {
             </div>
 
             <div id="clear-button">
-                <button onClick={reset}>Clear</button>
+                <button onClick={(event)=>reset(event.target.value)} value="clear">Clear</button>
             </div>
 
             <div id="results">
